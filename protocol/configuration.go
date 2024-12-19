@@ -35,12 +35,14 @@ func HandleConfiguration(conn *connection, packet *incommingPacket) {
 	case 0x07:
 		packCount, _ := packet.ReadVarInt()
 
+		fmt.Println("Known Packets Count:", packCount)
+
 		for i := 1; i > int(packCount); i++ {
 			namespace := packet.ReadString()
 			ID := packet.ReadString()
 			vers := packet.ReadString()
 
-			fmt.Printf("%d -> %s, %s, %s", i, namespace, ID, vers)
+			fmt.Printf("%d -> %s, %s, %s \n", i, namespace, ID, vers)
 		}
 
 	default:
